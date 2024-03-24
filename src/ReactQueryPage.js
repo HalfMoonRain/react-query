@@ -1,36 +1,29 @@
 import React from "react";
-import { usePostQuery } from "./hooks/usePosts";
+import { useQueries } from "@tanstack/react-query";
+import axios from "axios";
 
 const ReactQueryPage = () => {
-  const { data, isLoading, isError, error, refetch } = usePostQuery();
+  const ids = [1, 2, 3, 4];
 
-  console.log(data);
+  const fetchPostDetail = (id) => {
+    return axios.get(`http://localhost:3004/posts/${id}`);
+  };
+  const results = useQueries({
+    queries: ids.map((id) => {
+      return {
+        queryKey: ["posts", id],
+        queryFn: () => fetchPostDetail(id),
+      };
+    }),
+    combine: (results) => {
+      return {
+        data: results.map((results) => results.data.data),
+      };
+    },
+  });
+  console.log(results);
 
-  if (isLoading) {
-    return (
-      <div>
-        <h1>Loading</h1>
-      </div>
-    );
-  }
-  if (isError) {
-    return (
-      <div>
-        <h1>Error: {error.message}</h1>
-      </div>
-    );
-  }
-
-  return (
-    <div>
-      {data?.map((item) => (
-        <div>
-          <h2>{item.title}</h2>
-        </div>
-      ))}
-      <button onClick={refetch}>post list 다시 들고오기</button>
-    </div>
-  );
+  return <div></div>;
 };
 
 export default ReactQueryPage;

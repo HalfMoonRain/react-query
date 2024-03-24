@@ -2,7 +2,8 @@
   "posts": [
     { "id": "1", "title": "html css 강의" },
     { "id": "2", "title": "JS 강의" },
-    { "id": "3", "title": "React 강의" }
+    { "id": "3", "title": "React 강의" },
+    { "id": "4", "title": "node 강의" }
   ],
   "comments": [
     {
