@@ -1,0 +1,17 @@
+{
+  "posts": [
+    { "id": "1", "title": "html css 강의" },
+    { "id": "2", "title": "JS 강의" },
+    { "id": "3", "title": "React 강의" }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
